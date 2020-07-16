@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    container_name: fake-be
+    environment:
+      MYSQL_HOST: mysql-fakebank
+      MYSQL_PORT: 3306
+      MYSQL_DB: fakebank
+      MYSQL_USERNAME: fakebank
+      MYSQL_PASSWORD: fakebank
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend
+    container_name: fake-fe
+    volumes:
+      - ./frontend:/app
+    expose:
+      - 80
+    ports:
+      - "80:80"
